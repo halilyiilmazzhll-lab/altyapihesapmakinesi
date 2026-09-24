@@ -355,7 +355,7 @@ fun FoseptikDiagram(
 
             val bacaWidth = with(density) { 36.dp.toPx() }
             val tankWidth = with(density) { 60.dp.toPx() }
-            val marginX = with(density) { 32.dp.toPx() }
+            val marginX = with(density) { 64.dp.toPx() }
             val topMargin = with(density) { 40.dp.toPx() }
             val bottomMargin = with(density) { 40.dp.toPx() }
             val fallbackHeight = with(density) { 60.dp.toPx() }
@@ -503,11 +503,11 @@ fun FoseptikDiagram(
                     drawBadge("Baca", bacaLeft + bacaWidth / 2, mTop - with(density) { 16.dp.toPx() }, textPaint, badgeBgAndroid)
                     drawBadge("Foseptik", tankLeft + tankWidth / 2, tTop - with(density) { 16.dp.toPx() }, textPaint, badgeBgAndroid)
 
-                    drawBadge("A: ${NumberParser.formatDecimal(manholeInvert)}", bacaLeft - with(density) { 24.dp.toPx() }, mAkar, dimPaint, android.graphics.Color.WHITE)
+                    drawBadge("A: ${NumberParser.formatDecimal(manholeInvert)}", bacaLeft - with(density) { 32.dp.toPx() }, mAkar, dimPaint, android.graphics.Color.WHITE)
                     
-                    drawBadge("A: ${NumberParser.formatDecimal(inletElev)}", tankLeft + tankWidth + with(density) { 24.dp.toPx() }, tAkar, dimPaint, android.graphics.Color.WHITE)
-                    drawBadge("K: ${NumberParser.formatDecimal(coverElev)}", tankLeft + tankWidth + with(density) { 24.dp.toPx() }, tTop, dimPaint, android.graphics.Color.WHITE)
-                    drawBadge("T: ${NumberParser.formatDecimal(bottomElev)}", tankLeft + tankWidth + with(density) { 24.dp.toPx() }, tBottom, dimPaint, badgeBgAndroid)
+                    drawBadge("A: ${NumberParser.formatDecimal(inletElev)}", tankLeft + tankWidth + with(density) { 32.dp.toPx() }, tAkar, dimPaint, android.graphics.Color.WHITE)
+                    drawBadge("K: ${NumberParser.formatDecimal(coverElev)}", tankLeft + tankWidth + with(density) { 32.dp.toPx() }, tTop, dimPaint, android.graphics.Color.WHITE)
+                    drawBadge("T: ${NumberParser.formatDecimal(bottomElev)}", tankLeft + tankWidth + with(density) { 32.dp.toPx() }, tBottom, dimPaint, badgeBgAndroid)
 
                     if (groundElev != null && groundY != null) {
                         drawBadge("Zemin: ${NumberParser.formatDecimal(groundElev)}", canvasWidth / 2, groundY - with(density){14.dp.toPx()}, dimPaint, android.graphics.Color.WHITE)
