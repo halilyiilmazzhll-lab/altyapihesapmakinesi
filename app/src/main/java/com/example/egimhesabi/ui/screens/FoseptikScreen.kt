@@ -514,14 +514,17 @@ fun FoseptikDiagram(
                     drawBadge("T: ${NumberParser.formatDecimal(bottomElev)}", tankLeft + tankWidth + with(density) { 32.dp.toPx() }, tBottom, dimPaint, badgeBgAndroid)
 
                     if (groundElev != null && groundY != null) {
-                        drawBadge("Zemin: ${NumberParser.formatDecimal(groundElev)}", canvasWidth / 2, groundY - with(density){14.dp.toPx()}, dimPaint, android.graphics.Color.WHITE)
+                        val zeminX = pipeStartX + dx * 0.75f
+                        drawBadge("Zemin: ${NumberParser.formatDecimal(groundElev)}", zeminX, groundY - with(density){14.dp.toPx()}, dimPaint, android.graphics.Color.WHITE)
                     }
 
                     if (distance != null && distance > 0) {
                         drawBadge("◄── ${NumberParser.formatDecimal(distance)} m ──►", canvasWidth / 2, canvasHeight - with(density) { 8.dp.toPx() }, dimPaint, badgeBgAndroid)
                     }
                     if (slopeDecimal != null) {
-                        drawBadge("Eğim: %${NumberParser.formatDecimal(slopeDecimal * 100)}", canvasWidth / 2, pipeStartY + dy/2 - with(density){16.dp.toPx()}, dimPaint, android.graphics.Color.WHITE)
+                        val egimX = pipeStartX + dx * 0.25f
+                        val egimY = pipeStartY + dy * 0.25f - with(density){16.dp.toPx()}
+                        drawBadge("Eğim: %${NumberParser.formatDecimal(slopeDecimal * 100)}", egimX, egimY, dimPaint, android.graphics.Color.WHITE)
                     }
                 }
             } else {
