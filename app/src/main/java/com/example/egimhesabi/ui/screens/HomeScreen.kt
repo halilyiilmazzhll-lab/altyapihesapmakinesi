@@ -65,7 +65,7 @@ fun HomeScreen(
         com.example.egimhesabi.ui.components.ActiveStakeoutCard(modifier = Modifier.padding(horizontal = 24.dp).padding(bottom = 8.dp))
 
         LazyVerticalGrid(
-            columns = GridCells.Adaptive(156.dp),
+            columns = GridCells.Fixed(2),
             contentPadding = PaddingValues(horizontal = 24.dp, vertical = 8.dp),
             horizontalArrangement = Arrangement.spacedBy(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -147,18 +147,18 @@ fun HomeGridCard(
     onClick: () -> Unit
 ) {
     Surface(
-        shape = RoundedCornerShape(24.dp),
+        shape = RoundedCornerShape(16.dp),
         color = Color.White,
         shadowElevation = 2.dp,
         modifier = Modifier
             .fillMaxWidth()
-            .heightIn(min = 196.dp)
-            .clip(RoundedCornerShape(24.dp))
+            .aspectRatio(1f) // Tam kare (karo) olması için
+            .clip(RoundedCornerShape(16.dp))
             .clickable(onClick = onClick)
     ) {
         Column(
             modifier = Modifier
-                .padding(16.dp)
+                .padding(12.dp)
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
@@ -167,12 +167,12 @@ fun HomeGridCard(
                 imageVector = icon,
                 contentDescription = null,
                 tint = AccentOrange,
-                modifier = Modifier.size(48.dp)
+                modifier = Modifier.size(36.dp)
             )
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(12.dp))
             Text(
                 text = title,
-                fontSize = 16.sp,
+                fontSize = 14.sp,
                 fontWeight = FontWeight.Bold,
                 color = TextPrimary,
                 textAlign = TextAlign.Center
@@ -180,10 +180,10 @@ fun HomeGridCard(
             Spacer(modifier = Modifier.height(4.dp))
             Text(
                 text = subtitle,
-                fontSize = 12.sp,
+                fontSize = 11.sp,
                 color = TextSecondary,
                 textAlign = TextAlign.Center,
-                lineHeight = 14.sp
+                lineHeight = 12.sp
             )
         }
     }
