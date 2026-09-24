@@ -14,7 +14,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -119,7 +119,7 @@ fun FoseptikScreen(
                 },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Geri", tint = TextPrimary)
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Geri", tint = TextPrimary)
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -153,28 +153,49 @@ fun FoseptikScreen(
                 ) {
                     Column(
                         modifier = Modifier.padding(16.dp),
-                        verticalArrangement = Arrangement.spacedBy(12.dp)
+                        verticalArrangement = Arrangement.spacedBy(16.dp)
                     ) {
-                        Text("Değerleri Giriniz", fontWeight = FontWeight.Bold, fontSize = 18.sp, color = TextPrimary)
+                        Text(
+                            "Hesaplama Değerleri", 
+                            fontWeight = FontWeight.Bold, 
+                            fontSize = 18.sp, 
+                            color = TextPrimary
+                        )
+                        
+                        Text(
+                            "Bu sayfada, mevcut bir bacadan foseptiğe gidecek hattın eğimini ve foseptik kuyusunun derinlik/kot hesaplarını yapabilirsiniz. Değerleri girdikçe çizim otomatik güncellenir.",
+                            fontSize = 13.sp,
+                            color = TextSecondary,
+                            lineHeight = 18.sp
+                        )
 
-                        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                            OutlinedTextField(
-                                value = manholeInvertStr,
-                                onValueChange = { manholeInvertStr = it },
-                                label = { Text("Baca Akar (m)") },
-                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                                colors = glassFieldColors,
-                                modifier = Modifier.weight(1f)
-                            )
-                            OutlinedTextField(
-                                value = distanceStr,
-                                onValueChange = { distanceStr = it },
-                                label = { Text("Mesafe (m)") },
-                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                                colors = glassFieldColors,
-                                modifier = Modifier.weight(1f)
-                            )
-                        }
+                        Divider(color = Color.LightGray.copy(alpha = 0.5f))
+
+                        // GRUP 1: Başlangıç
+                        Text("1. Başlangıç Noktası (Baca)", fontWeight = FontWeight.SemiBold, fontSize = 15.sp, color = AccentOrange)
+                        OutlinedTextField(
+                            value = manholeInvertStr,
+                            onValueChange = { manholeInvertStr = it },
+                            label = { Text("Bacanın Akar Kotu (Başlangıç)") },
+                            placeholder = { Text("Örn: 100.50") },
+                            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                            colors = glassFieldColors,
+                            modifier = Modifier.fillMaxWidth()
+                        )
+
+                        Divider(color = Color.LightGray.copy(alpha = 0.5f))
+
+                        // GRUP 2: Hat (Mesafe ve Eğim)
+                        Text("2. Hat Bilgileri (Mesafe ve Eğim)", fontWeight = FontWeight.SemiBold, fontSize = 15.sp, color = AccentOrange)
+                        OutlinedTextField(
+                            value = distanceStr,
+                            onValueChange = { distanceStr = it },
+                            label = { Text("Baca ile Foseptik Arası Mesafe (m)") },
+                            placeholder = { Text("Örn: 25.0") },
+                            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                            colors = glassFieldColors,
+                            modifier = Modifier.fillMaxWidth()
+                        )
 
                         Column(
                             modifier = Modifier
@@ -182,7 +203,7 @@ fun FoseptikScreen(
                                 .background(Color.White.copy(alpha = 0.5f), RoundedCornerShape(12.dp))
                                 .padding(8.dp)
                         ) {
-                            Text("Eğim Tipi", fontSize = 14.sp, color = TextSecondary)
+                            Text("Eğim Tipi Seçimi:", fontSize = 14.sp, color = TextSecondary, fontWeight = FontWeight.Medium)
                             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceAround, modifier = Modifier.fillMaxWidth()) {
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     RadioButton(selected = slopeType == 0, onClick = { slopeType = 0 }, colors = RadioButtonDefaults.colors(selectedColor = AccentOrange))
@@ -203,34 +224,42 @@ fun FoseptikScreen(
                             value = slopeStr,
                             onValueChange = { slopeStr = it },
                             label = { Text("Eğim Değeri") },
+                            placeholder = { Text("Seçilen tipe göre eğim girin") },
                             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                             colors = glassFieldColors,
                             modifier = Modifier.fillMaxWidth()
                         )
 
-                        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                            OutlinedTextField(
-                                value = groundElevStr,
-                                onValueChange = { groundElevStr = it },
-                                label = { Text("Zemin (m)") },
-                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                                colors = glassFieldColors,
-                                modifier = Modifier.weight(1f)
-                            )
-                            OutlinedTextField(
-                                value = tankHeightStr,
-                                onValueChange = { tankHeightStr = it },
-                                label = { Text("Fos. Boyu (m)") },
-                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                                colors = glassFieldColors,
-                                modifier = Modifier.weight(1f)
-                            )
-                        }
+                        Divider(color = Color.LightGray.copy(alpha = 0.5f))
+
+                        // GRUP 3: Foseptik Özellikleri
+                        Text("3. Foseptik (Kuyu) Bilgileri", fontWeight = FontWeight.SemiBold, fontSize = 15.sp, color = AccentOrange)
+                        
+                        OutlinedTextField(
+                            value = tankHeightStr,
+                            onValueChange = { tankHeightStr = it },
+                            label = { Text("Foseptik Toplam Boyu (m)") },
+                            placeholder = { Text("Kuyunun iç yüksekliği") },
+                            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                            colors = glassFieldColors,
+                            modifier = Modifier.fillMaxWidth()
+                        )
 
                         OutlinedTextField(
                             value = coverToInletStr,
                             onValueChange = { coverToInletStr = it },
-                            label = { Text("Kapak - Akar Mesafesi (m)") },
+                            label = { Text("Kapak ile Akar Arası Mesafe (m)") },
+                            placeholder = { Text("Borunun girdiği noktanın kapağa uzaklığı") },
+                            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                            colors = glassFieldColors,
+                            modifier = Modifier.fillMaxWidth()
+                        )
+
+                        OutlinedTextField(
+                            value = groundElevStr,
+                            onValueChange = { groundElevStr = it },
+                            label = { Text("Zemin Kotu (Opsiyonel)") },
+                            placeholder = { Text("Kazı hesabı için foseptiğin kurulacağı zemin kotu") },
                             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                             colors = glassFieldColors,
                             modifier = Modifier.fillMaxWidth()
@@ -253,16 +282,17 @@ fun FoseptikScreen(
                             verticalArrangement = Arrangement.spacedBy(8.dp)
                         ) {
                             Text("Sonuçlar", fontWeight = FontWeight.Bold, fontSize = 18.sp, color = AccentOrange)
+                            
                             inletElev?.let {
-                                Text("Foseptik Akar Kotu: ${NumberParser.formatDecimal(it)} m", color = TextPrimary)
+                                Text("• Foseptik Giriş (Akar) Kotu: ${NumberParser.formatDecimal(it)} m", color = TextPrimary)
                             }
                             coverElev?.let {
-                                Text("Foseptik Kapak Kotu: ${NumberParser.formatDecimal(it)} m", color = TextPrimary)
+                                Text("• Foseptik Kapak Kotu: ${NumberParser.formatDecimal(it)} m", color = TextPrimary)
                             }
-                            Text("Foseptik Taban Kotu: ${NumberParser.formatDecimal(bottomElev)} m", fontWeight = FontWeight.Bold, color = TextPrimary)
+                            Text("• Foseptik Taban Kotu (Kazı Alt Noktası): ${NumberParser.formatDecimal(bottomElev)} m", fontWeight = FontWeight.Bold, color = TextPrimary)
                             
                             excavationDepth?.let {
-                                Text("Kazı Derinliği: ${NumberParser.formatDecimal(it)} m", color = TextPrimary)
+                                Text("• Kazı Derinliği (Zeminden Tabana): ${NumberParser.formatDecimal(it)} m", fontWeight = FontWeight.Medium, color = Color(0xFFD97706)) // slightly darker orange
                             }
                         }
                     }
