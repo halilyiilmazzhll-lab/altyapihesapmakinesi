@@ -1,0 +1,16 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="288dp"
+    android:height="288dp"
+    android:viewportWidth="288"
+    android:viewportHeight="288">
+    
+    <!-- Background Circle (AccentOrange) -->
+    <path
+        android:fillColor="#FF6B35"
+        android:pathData="M144,144m-96,0a96,96 0,1 1,192 0a96,96 0,1 1,-192 0" />
+
+    <!-- Trending Down Icon (White) centered and scaled up -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M185.5,160l-37.5,-37.5l-33.6,33.6l-46.4,-46.4l11.3,-11.3l35.1,35.1l33.6,-33.6l48.8,48.8l11.3,-11.3v34h-34l11.4,-11.4z" />
+</vector>

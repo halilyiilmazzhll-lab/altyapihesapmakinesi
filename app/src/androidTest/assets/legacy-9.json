@@ -1,0 +1,662 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 9,
+    "identityHash": "0190ece32521747e1cdd933f930e8f44",
+    "entities": [
+      {
+        "tableName": "history_entries",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `baca1Name` TEXT NOT NULL, `baca2Name` TEXT NOT NULL, `baca1KapakKotu` REAL NOT NULL, `baca1AkarKotu` REAL NOT NULL, `baca2KapakKotu` REAL NOT NULL, `baca2AkarKotu` REAL NOT NULL, `mesafe` REAL NOT NULL, `slopePercent` REAL NOT NULL, `slopeRatio` REAL NOT NULL, `heightDiff` REAL NOT NULL, `slopeStatus` TEXT NOT NULL, `slopeDirection` INTEGER NOT NULL, `timestamp` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "baca1Name",
+            "columnName": "baca1Name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "baca2Name",
+            "columnName": "baca2Name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "baca1KapakKotu",
+            "columnName": "baca1KapakKotu",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "baca1AkarKotu",
+            "columnName": "baca1AkarKotu",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "baca2KapakKotu",
+            "columnName": "baca2KapakKotu",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "baca2AkarKotu",
+            "columnName": "baca2AkarKotu",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mesafe",
+            "columnName": "mesafe",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "slopePercent",
+            "columnName": "slopePercent",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "slopeRatio",
+            "columnName": "slopeRatio",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "heightDiff",
+            "columnName": "heightDiff",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "slopeStatus",
+            "columnName": "slopeStatus",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "slopeDirection",
+            "columnName": "slopeDirection",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timestamp",
+            "columnName": "timestamp",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "districts",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `nameKey` TEXT NOT NULL, `createdAt` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nameKey",
+            "columnName": "nameKey",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_districts_nameKey",
+            "unique": true,
+            "columnNames": [
+              "nameKey"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_districts_nameKey` ON `${TABLE_NAME}` (`nameKey`)"
+          }
+        ]
+      },
+      {
+        "tableName": "projects",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `districtId` INTEGER NOT NULL, `name` TEXT NOT NULL, `nameKey` TEXT NOT NULL, `createdAt` INTEGER NOT NULL, FOREIGN KEY(`districtId`) REFERENCES `districts`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "districtId",
+            "columnName": "districtId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nameKey",
+            "columnName": "nameKey",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_projects_districtId",
+            "unique": false,
+            "columnNames": [
+              "districtId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_projects_districtId` ON `${TABLE_NAME}` (`districtId`)"
+          },
+          {
+            "name": "index_projects_districtId_nameKey",
+            "unique": true,
+            "columnNames": [
+              "districtId",
+              "nameKey"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_projects_districtId_nameKey` ON `${TABLE_NAME}` (`districtId`, `nameKey`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "districts",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "districtId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "manholes",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `projectId` INTEGER NOT NULL, `name` TEXT NOT NULL, `nameKey` TEXT NOT NULL, `x` REAL NOT NULL, `y` REAL NOT NULL, `projeSiyahKot` REAL NOT NULL, `projeKapakKotu` REAL NOT NULL, `araziSiyahKot` REAL NOT NULL, `projeAkarKot` REAL NOT NULL, `imalatKapakKotu` REAL, `imalatAkarKotu` REAL, `status` TEXT NOT NULL, `progressPaymentNumber` INTEGER, FOREIGN KEY(`projectId`) REFERENCES `projects`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "projectId",
+            "columnName": "projectId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nameKey",
+            "columnName": "nameKey",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "x",
+            "columnName": "x",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "y",
+            "columnName": "y",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "projeSiyahKot",
+            "columnName": "projeSiyahKot",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "projeKapakKotu",
+            "columnName": "projeKapakKotu",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "araziSiyahKot",
+            "columnName": "araziSiyahKot",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "projeAkarKot",
+            "columnName": "projeAkarKot",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "imalatKapakKotu",
+            "columnName": "imalatKapakKotu",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "imalatAkarKotu",
+            "columnName": "imalatAkarKotu",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "progressPaymentNumber",
+            "columnName": "progressPaymentNumber",
+            "affinity": "INTEGER"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_manholes_projectId",
+            "unique": false,
+            "columnNames": [
+              "projectId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_manholes_projectId` ON `${TABLE_NAME}` (`projectId`)"
+          },
+          {
+            "name": "index_manholes_projectId_id",
+            "unique": true,
+            "columnNames": [
+              "projectId",
+              "id"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_manholes_projectId_id` ON `${TABLE_NAME}` (`projectId`, `id`)"
+          },
+          {
+            "name": "index_manholes_projectId_nameKey",
+            "unique": true,
+            "columnNames": [
+              "projectId",
+              "nameKey"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_manholes_projectId_nameKey` ON `${TABLE_NAME}` (`projectId`, `nameKey`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "projects",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "projectId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "pipelines",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `projectId` INTEGER NOT NULL, `fromManholeId` INTEGER NOT NULL, `toManholeId` INTEGER NOT NULL, `projeMesafe` REAL NOT NULL, `imalatMesafe` REAL, `status` TEXT NOT NULL, `isReverseFlow` INTEGER NOT NULL, `progressPaymentNumber` INTEGER, FOREIGN KEY(`projectId`) REFERENCES `projects`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`projectId`, `fromManholeId`) REFERENCES `manholes`(`projectId`, `id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`projectId`, `toManholeId`) REFERENCES `manholes`(`projectId`, `id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "projectId",
+            "columnName": "projectId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fromManholeId",
+            "columnName": "fromManholeId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "toManholeId",
+            "columnName": "toManholeId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "projeMesafe",
+            "columnName": "projeMesafe",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "imalatMesafe",
+            "columnName": "imalatMesafe",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isReverseFlow",
+            "columnName": "isReverseFlow",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "progressPaymentNumber",
+            "columnName": "progressPaymentNumber",
+            "affinity": "INTEGER"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_pipelines_projectId",
+            "unique": false,
+            "columnNames": [
+              "projectId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_pipelines_projectId` ON `${TABLE_NAME}` (`projectId`)"
+          },
+          {
+            "name": "index_pipelines_projectId_fromManholeId",
+            "unique": false,
+            "columnNames": [
+              "projectId",
+              "fromManholeId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_pipelines_projectId_fromManholeId` ON `${TABLE_NAME}` (`projectId`, `fromManholeId`)"
+          },
+          {
+            "name": "index_pipelines_projectId_toManholeId",
+            "unique": false,
+            "columnNames": [
+              "projectId",
+              "toManholeId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_pipelines_projectId_toManholeId` ON `${TABLE_NAME}` (`projectId`, `toManholeId`)"
+          },
+          {
+            "name": "index_pipelines_projectId_fromManholeId_toManholeId",
+            "unique": true,
+            "columnNames": [
+              "projectId",
+              "fromManholeId",
+              "toManholeId"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_pipelines_projectId_fromManholeId_toManholeId` ON `${TABLE_NAME}` (`projectId`, `fromManholeId`, `toManholeId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "projects",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "projectId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "manholes",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "projectId",
+              "fromManholeId"
+            ],
+            "referencedColumns": [
+              "projectId",
+              "id"
+            ]
+          },
+          {
+            "table": "manholes",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "projectId",
+              "toManholeId"
+            ],
+            "referencedColumns": [
+              "projectId",
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "work_orders",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `manholeId` INTEGER NOT NULL, `title` TEXT NOT NULL, `note` TEXT NOT NULL, `createdAt` INTEGER NOT NULL, `updatedAt` INTEGER NOT NULL, FOREIGN KEY(`manholeId`) REFERENCES `manholes`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "manholeId",
+            "columnName": "manholeId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "note",
+            "columnName": "note",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_work_orders_manholeId",
+            "unique": true,
+            "columnNames": [
+              "manholeId"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_work_orders_manholeId` ON `${TABLE_NAME}` (`manholeId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "manholes",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "manholeId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "work_order_photos",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `workOrderId` INTEGER NOT NULL, `path` TEXT NOT NULL, `displayOrder` INTEGER NOT NULL, `createdAt` INTEGER NOT NULL, FOREIGN KEY(`workOrderId`) REFERENCES `work_orders`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "workOrderId",
+            "columnName": "workOrderId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "path",
+            "columnName": "path",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "displayOrder",
+            "columnName": "displayOrder",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_work_order_photos_workOrderId",
+            "unique": false,
+            "columnNames": [
+              "workOrderId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_work_order_photos_workOrderId` ON `${TABLE_NAME}` (`workOrderId`)"
+          },
+          {
+            "name": "index_work_order_photos_workOrderId_displayOrder",
+            "unique": true,
+            "columnNames": [
+              "workOrderId",
+              "displayOrder"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_work_order_photos_workOrderId_displayOrder` ON `${TABLE_NAME}` (`workOrderId`, `displayOrder`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "work_orders",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "workOrderId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0190ece32521747e1cdd933f930e8f44')"
+    ]
+  }
+}

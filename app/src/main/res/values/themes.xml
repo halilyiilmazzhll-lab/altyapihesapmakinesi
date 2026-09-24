@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.EgimHesabi" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@android:color/white</item>
+    </style>
+
+    <style name="Theme.EgimHesabi.Starting" parent="Theme.SplashScreen">
+        <!-- Background of the splash screen -->
+        <item name="windowSplashScreenBackground">@android:color/white</item>
+        <!-- The icon to display -->
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_brand</item>
+        <!-- Theme to use after the splash screen finishes -->
+        <item name="postSplashScreenTheme">@style/Theme.EgimHesabi</item>
+    </style>
+</resources>

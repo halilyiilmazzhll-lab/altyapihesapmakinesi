@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">Altyapı Hesap Makinesi</string>
+    <string name="title_calculator">⚡ EĞİM HESABI</string>
+    <string name="title_history">📋 GEÇMİŞ</string>
+    <string name="title_settings">AYARLAR</string>
+    <string name="nav_calculator">Hesap</string>
+    <string name="nav_history">Geçmiş</string>
+    <string name="nav_settings">Ayarlar</string>
+    <string name="action_clear">Temizle</string>
+    <string name="action_delete_all">Tümünü Sil</string>
+    <string name="action_delete">Sil</string>
+    <string name="action_settings">Ayarlar</string>
+    <string name="action_back">Geri</string>
+    <string name="manhole_1">BACA 1</string>
+    <string name="manhole_2">BACA 2</string>
+    <string name="cover_level">Kapak Kotu</string>
+    <string name="flow_level">Akar Kotu</string>
+    <string name="distance">Mesafe</string>
+    <string name="unit_meters">m</string>
+    <string name="ratio_prefix">1/</string>
+    <string name="depth_negative_error">Kapak kotu akar kotundan düşük!</string>
+    <string name="distance_invalid_error">Mesafe 0\'dan büyük olmalıdır</string>
+    <string name="label_percentage">Yüzdelik</string>
+    <string name="label_ratio">Oran</string>
+    <string name="status_ok">Eğim uygun</string>
+    <string name="status_near_limit">Eğim sınır değerde</string>
+    <string name="status_too_low">Eğim çok düşük!</string>
+    <string name="status_too_high">Eğim çok yüksek!</string>
+    <string name="status_unknown">Değerleri girin</string>
+    <string name="history_empty_title">Henüz hesaplama yok</string>
+    <string name="history_empty_desc">Yaptığınız hesaplamalar burada görünecek</string>
+    <string name="settings_limits_title">📐 Eğim Limitleri (1/X Oranı)</string>
+    <string name="settings_min_label">Minimum Eğim Oranı (X)</string>
+    <string name="settings_max_label">Maksimum Eğim Oranı (X)</string>
+    <string name="settings_hint">Örn: 1/200 için 200 yazın. Min X >= Max X kuralına uygun giriniz.</string>
+    <string name="settings_reset">Varsayılana Sıfırla</string>
+    <string name="about_title">ℹ️ Hakkında</string>
+    <string name="about_description">Altyapı saha hesaplama aracı</string>
+    <string name="diagram_content_description">İki baca arasındaki boru eğimi, akar kotları ve akış yönü diyagramı</string>
+    <string name="nav_interpolation">Ara Kot</string>
+    <string name="interpolation_title">Ara Kot Hesabı</string>
+    <string name="interpolation_diagram_desc">İki kot arasındaki ara noktayı gösteren profil diyagramı</string>
+</resources>

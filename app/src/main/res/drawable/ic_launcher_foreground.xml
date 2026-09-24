@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Ground / Reference Baseline -->
+    <path
+        android:strokeColor="#334155"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:pathData="M24,82 L84,82" />
+
+    <!-- Left Manhole (B1) - Higher elevation -->
+    <!-- Cover -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M28,34 h16 v3 h-16 z" />
+    <!-- Shaft Body -->
+    <path
+        android:fillColor="#1E3A5F"
+        android:strokeColor="#4A90E2"
+        android:strokeWidth="1.5"
+        android:pathData="M30,37 h12 v27 h-12 z" />
+    <!-- Step Rungs -->
+    <path
+        android:strokeColor="#64B5F6"
+        android:strokeWidth="1"
+        android:pathData="M33,44 h6 M33,50 h6 M33,56 h6" />
+
+    <!-- Right Manhole (B2) - Lower elevation -->
+    <!-- Cover -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M64,44 h16 v3 h-16 z" />
+    <!-- Shaft Body -->
+    <path
+        android:fillColor="#1E3A5F"
+        android:strokeColor="#4A90E2"
+        android:strokeWidth="1.5"
+        android:pathData="M66,47 h12 v27 h-12 z" />
+    <!-- Step Rungs -->
+    <path
+        android:strokeColor="#64B5F6"
+        android:strokeWidth="1"
+        android:pathData="M69,54 h6 M69,60 h6 M69,66 h6" />
+
+    <!-- Sloped Pipe Connecting Invert Levels (Orange Vibrant Glow) -->
+    <path
+        android:strokeColor="#FF8C00"
+        android:strokeWidth="4.5"
+        android:strokeLineCap="round"
+        android:pathData="M42,64 L66,74" />
+
+    <!-- Flow Arrow on Pipe -->
+    <path
+        android:fillColor="#FFA726"
+        android:pathData="M56,71.5 L50,67.5 L52,74.5 Z" />
+
+    <!-- Slope Angle Measurement Triangle & Badge -->
+    <path
+        android:strokeColor="#FFB74D"
+        android:strokeWidth="1.2"
+        android:strokeLineJoin="round"
+        android:pathData="M42,64 L66,64 L66,74" />
+
+    <!-- Percentage Badge / Symbol '% ' in Top-Right -->
+    <path
+        android:fillColor="#FF8C00"
+        android:pathData="M64,26 A4,4 0 1,0 64,34 A4,4 0 1,0 64,26 Z" />
+    <path
+        android:fillColor="#0F1B2D"
+        android:pathData="M64,28 A2,2 0 1,0 64,32 A2,2 0 1,0 64,28 Z" />
+
+    <!-- Percent slash -->
+    <path
+        android:strokeColor="#FF8C00"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round"
+        android:pathData="M74,25 L62,37" />
+
+    <path
+        android:fillColor="#FF8C00"
+        android:pathData="M72,30 A4,4 0 1,0 72,38 A4,4 0 1,0 72,30 Z" />
+    <path
+        android:fillColor="#0F1B2D"
+        android:pathData="M72,32 A2,2 0 1,0 72,36 A2,2 0 1,0 72,32 Z" />
+</vector>
