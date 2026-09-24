@@ -35,6 +35,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.egimhesabi.theme.*
+import com.example.egimhesabi.domain.FoseptikCalculator
 import com.example.egimhesabi.ui.components.GlassCard
 import com.example.egimhesabi.util.NumberParser
 import kotlin.math.sqrt
@@ -62,29 +63,22 @@ fun FoseptikScreen(
     val tankHeight = tankHeightStr.replace(",", ".").toDoubleOrNull()
     val coverToInlet = coverToInletStr.replace(",", ".").toDoubleOrNull()
 
-    var inletElev: Double? = null
-    var bottomElev: Double? = null
-    var coverElev: Double? = null
-    var excavationDepth: Double? = null
-    var slopeDecimal: Double? = null
-
-    if (manholeInvert != null && distance != null && slopeVal != null && slopeVal != 0.0) {
-        slopeDecimal = when (slopeType) {
-            0 -> 1.0 / slopeVal
-            1 -> slopeVal / 100.0
-            else -> slopeVal / 100.0
-        }
-        inletElev = manholeInvert - (distance * slopeDecimal)
-
-        if (tankHeight != null && coverToInlet != null) {
-            coverElev = inletElev + coverToInlet
-            bottomElev = coverElev - tankHeight
-            
-            if (groundElev != null) {
-                excavationDepth = groundElev - bottomElev
-            }
-        }
-    }
+    val result = FoseptikCalculator.calculate(
+        manholeInvert = manholeInvert,
+        distance = distance,
+        slopeType = slopeType,
+        slopeVal = slopeVal,
+        groundElev = groundElev,
+        tankHeight = tankHeight,
+        coverToInlet = coverToInlet
+    )
+    
+    val inletElev = result.inletElev
+    val bottomElev = result.bottomElev
+    val coverElev = result.coverElev
+    val excavationDepth = result.excavationDepth
+    val slopeDecimal = result.slopeDecimal
+    val errorMessage = result.errorMessage
 
     val glassFieldColors = OutlinedTextFieldDefaults.colors(
         focusedBorderColor = AccentOrange,
@@ -282,6 +276,16 @@ fun FoseptikScreen(
                             verticalArrangement = Arrangement.spacedBy(8.dp)
                         ) {
                             Text("Sonuçlar", fontWeight = FontWeight.Bold, fontSize = 18.sp, color = AccentOrange)
+                            
+                            if (errorMessage != null) {
+                                Text(
+                                    text = errorMessage,
+                                    color = MaterialTheme.colorScheme.error,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 14.sp
+                                )
+                            }
+
                             
                             inletElev?.let {
                                 Text("• Foseptik Giriş (Akar) Kotu: ${NumberParser.formatDecimal(it)} m", color = TextPrimary)
