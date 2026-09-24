@@ -91,6 +91,7 @@ fun MainNavigation() {
                     onNavigateElevationTransfer = {
                         navigateTo(ElevationTransfer)
                     },
+                    onNavigateSepticTank = { navigateTo(SepticTank) },
                     onNavigateSettings = { navigateTo(Settings) }
                 )
             }
@@ -275,6 +276,12 @@ fun MainNavigation() {
                 ImpactCalculationScreen(
                     viewModel = impactViewModel,
                     onOpenDrawer = { backStack.removeLastOrNull() },
+                    modifier = Modifier.safeDrawingPadding()
+                )
+            }
+            entry<SepticTank> {
+                FoseptikScreen(
+                    onBack = { backStack.removeLastOrNull() },
                     modifier = Modifier.safeDrawingPadding()
                 )
             }

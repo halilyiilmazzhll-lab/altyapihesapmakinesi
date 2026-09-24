@@ -31,6 +31,7 @@ fun HomeScreen(
     onNavigateImpact: () -> Unit,
     onNavigateLeveling: () -> Unit,
     onNavigateElevationTransfer: () -> Unit,
+    onNavigateSepticTank: () -> Unit,
     onNavigateSettings: () -> Unit
 ) {
     Column(
@@ -133,6 +134,14 @@ fun HomeScreen(
                     subtitle = "RS'den yeni bir noktaya kot taşı",
                     icon = Icons.Default.SwapVert,
                     onClick = onNavigateElevationTransfer
+                )
+            }
+            item {
+                HomeGridCard(
+                    title = "Foseptik",
+                    subtitle = "Foseptik hesapla ve görselleştir",
+                    icon = Icons.Default.WaterDamage,
+                    onClick = onNavigateSepticTank
                 )
             }
         }

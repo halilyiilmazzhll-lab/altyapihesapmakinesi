@@ -18,3 +18,4 @@ import kotlinx.serialization.Serializable
 @Serializable data class ProjectPipelines(val projectId: Long, val projectName: String) : NavKey
 @Serializable data class ProjectOrderBook(val projectId: Long, val projectName: String) : NavKey
 
+@Serializable data object SepticTank : NavKey
